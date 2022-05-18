@@ -43,7 +43,7 @@ class AccountRepositoryTest {
 
     }
 
-    @Test
+   @Test
     public void printAccounts(){
         List<Account> accounts = accountRepository.findAll();
 
