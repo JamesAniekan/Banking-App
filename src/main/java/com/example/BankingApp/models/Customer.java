@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+//@ToString(exclude = "accounts")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,14 +21,6 @@ public class Customer {
     private String lastName;
     private String email;
     private int phoneNumber;
-
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            mappedBy = "accountOwner",
-            fetch = FetchType.EAGER
-
-    )
-    private List<Account> accounts;
 
     @Embedded
     private Address address;

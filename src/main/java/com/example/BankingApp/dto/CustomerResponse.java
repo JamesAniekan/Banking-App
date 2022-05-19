@@ -1,9 +1,12 @@
 package com.example.BankingApp.dto;
 
+import com.example.BankingApp.models.Account;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor

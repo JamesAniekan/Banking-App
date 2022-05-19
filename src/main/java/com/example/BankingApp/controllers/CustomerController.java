@@ -2,6 +2,7 @@ package com.example.BankingApp.controllers;
 
 import com.example.BankingApp.dto.CustomerResponse;
 import com.example.BankingApp.dto.RegisterRequest;
+import com.example.BankingApp.models.Customer;
 import com.example.BankingApp.services.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class CustomerController {
 
   private final CustomerService customerService;
 
-
+//Endpoint to post a customer.
     @PostMapping("/register")
     public ResponseEntity<String> registerCustomer(@RequestBody RegisterRequest registerRequest){
             customerService.registerCustomer(registerRequest);
@@ -27,6 +28,8 @@ public class CustomerController {
             return new ResponseEntity<>("Customer registration successful", HttpStatus.OK);
     }
 
+
+//Endpoint to get all customers.
     @GetMapping("/customers")
     public ResponseEntity<List<CustomerResponse>> getAllCustomers(){
 
@@ -34,4 +37,18 @@ public class CustomerController {
 
     }
 
+    @GetMapping("/customers/{id}")
+  public ResponseEntity<CustomerResponse> getCustomerById(@PathVariable Long id){
+        return status(HttpStatus.OK).body(customerService.getCustomerById(id));
+  }
+
+
+
 }
+
+
+
+
+
+
+

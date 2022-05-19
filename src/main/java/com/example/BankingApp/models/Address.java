@@ -15,14 +15,14 @@ import javax.persistence.*;
 @AttributeOverrides({
         @AttributeOverride(
                 name = "address",
-                column = @Column(name = "cust_address")),
+                column = @Column(name = "cust_address", nullable = false)),
         @AttributeOverride(
                 name = "state",
-                column = @Column(name = "cust_state")
+                column = @Column(name = "cust_state", nullable = false)
         ),
         @AttributeOverride(
                 name = "country",
-                column = @Column(name = "cust_country")
+                column = @Column(name = "cust_country", nullable = false)
         )
 })
 public class Address {

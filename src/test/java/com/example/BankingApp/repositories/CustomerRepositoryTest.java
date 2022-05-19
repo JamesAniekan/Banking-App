@@ -21,23 +21,18 @@ class CustomerRepositoryTest {
     public void createCustomer(){
 
         Address address = Address.builder()
-                .address("10 Marina lane")
-                .state("Lagos")
-                .country("Nigeria")
+                .address("30 SpringVille Boulevard")
+                .state("Colorado")
+                .country("United States")
                 .build();
-//
-//        Account account = Account.builder()
-//                .accountNumber(7654321)
-//                .accountType("savings")
-//                .accountBalance(4000)
-//                .build();
+
 
 
         Customer customer = Customer.builder()
-                .firstName("Effiom")
-                .lastName("Ekong")
-                .phoneNumber(999443210)
-                .email("efimeekg@ymail.com")
+                .firstName("Ramsey")
+                .lastName("Acley")
+                .phoneNumber(9995430)
+                .email("ramackley@ymail.com")
                 .address(address)
                 .build();
 

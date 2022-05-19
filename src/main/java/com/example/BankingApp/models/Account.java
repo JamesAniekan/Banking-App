@@ -31,7 +31,7 @@ public class Account {
 
     @ManyToOne(
             cascade = CascadeType.MERGE,
-            fetch = FetchType.EAGER
+            fetch = FetchType.LAZY
     )
     @JoinColumn(
             name = "customer_id",

@@ -22,20 +22,14 @@ class AccountRepositoryTest {
     @Test
     public void createAccount() {
 
-        Customer customer = customerRepository.findByFirstName("Etuk");
+        Customer customer = customerRepository.findByFirstName("Otu");
 
-//        Customer customer = Customer.builder()
-//                .firstName("Temi")
-//                .lastName("Ola")
-//                .email("olatemi@gmail.com")
-//                .phoneNumber(4321333)
-//              .build();
 
 
         Account account = Account.builder()
-                .accountNumber(654123)
-                .accountType("Savings")
-                .accountBalance(14590)
+                .accountNumber(654333)
+                .accountType("Current")
+                .accountBalance(20000)
                 .accountOwner(customer)
                 .build();
 
