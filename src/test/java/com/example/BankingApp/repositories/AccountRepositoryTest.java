@@ -22,14 +22,14 @@ class AccountRepositoryTest {
     @Test
     public void createAccount() {
 
-        Customer customer = customerRepository.findByFirstName("Otu");
+        //Customer customer = customerRepository.findByFirstName("Otu").get();
 
 
         Account account = Account.builder()
-                .accountNumber(654333)
-                .accountType("Current")
-                .accountBalance(20000)
-                .accountOwner(customer)
+                .accountNumber(999993)
+                .accountType("saving")
+                .accountBalance(9000)
+                //.accountOwner(customer)
                 .build();
 
         accountRepository.save(account);
@@ -46,7 +46,7 @@ class AccountRepositoryTest {
 
     @Test
     public void printCus() {
-        Customer customer = customerRepository.findByFirstName("Etuk");
+        Customer customer = customerRepository.findByFirstName("Etuk").get();
         System.out.println(customer);
     }
 }

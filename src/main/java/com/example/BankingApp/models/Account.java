@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @Entity
 @Data
@@ -24,14 +25,15 @@ public class Account {
 
     private int accountNumber;
     private String accountType;
-    private double accountBalance;
+    private double accountBalance = 0.0;
 
     @CreationTimestamp
     private Instant creationDate;
 
     @ManyToOne(
             cascade = {CascadeType.MERGE, CascadeType.REMOVE},
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            optional = false
     )
     @JoinColumn(
             name = "customer_id",
@@ -41,10 +43,10 @@ public class Account {
 
 
     @OneToMany(
-
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
-            mappedBy = "transAccount"
+            mappedBy = "transAccount",
+            orphanRemoval = true
     )
     private List<Transaction> transactionHx;
 

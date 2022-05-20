@@ -16,4 +16,5 @@ public class RegisterRequest {
     private String address;
     private String country;
     private String state;
+
 }
