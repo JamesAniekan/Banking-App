@@ -25,7 +25,6 @@ class AccountRepositoryTest {
         Customer customer = customerRepository.findByFirstName("Otu");
 
 
-
         Account account = Account.builder()
                 .accountNumber(654333)
                 .accountType("Current")
@@ -37,8 +36,8 @@ class AccountRepositoryTest {
 
     }
 
-   @Test
-    public void printAccounts(){
+    @Test
+    public void printAccounts() {
         List<Account> accounts = accountRepository.findAll();
 
         System.out.println("Accounts = " + accounts);
@@ -46,7 +45,7 @@ class AccountRepositoryTest {
 
 
     @Test
-    public void printCus(){
+    public void printCus() {
         Customer customer = customerRepository.findByFirstName("Etuk");
         System.out.println(customer);
     }

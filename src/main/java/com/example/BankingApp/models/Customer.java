@@ -2,6 +2,8 @@ package com.example.BankingApp.models;
 
 
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,5 +26,11 @@ public class Customer {
 
     @Embedded
     private Address address;
+
+    @OneToMany(
+            mappedBy = "accountOwner",
+            orphanRemoval = true
+    )
+    private List<Account> accounts;
 
 }

@@ -21,22 +21,27 @@ class CustomerRepositoryTest {
     public void createCustomer(){
 
         Address address = Address.builder()
-                .address("30 SpringVille Boulevard")
-                .state("Colorado")
-                .country("United States")
+                .address("30 Lafarge Boulevard")
+                .state("Bloombell")
+                .country("United Lands")
                 .build();
 
 
 
         Customer customer = Customer.builder()
-                .firstName("Ramsey")
-                .lastName("Acley")
-                .phoneNumber(9995430)
-                .email("ramackley@ymail.com")
+                .firstName("Rowland")
+                .lastName("Dave")
+                .phoneNumber(1115430)
+                .email("rowdave@ymail.com")
                 .address(address)
                 .build();
 
         customerRepository.save(customer);
+    }
+
+    @Test
+    public void delCus(){
+        customerRepository.deleteById(2L);
     }
 
     @Test

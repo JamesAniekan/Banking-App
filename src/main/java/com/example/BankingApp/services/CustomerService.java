@@ -78,4 +78,11 @@ public class CustomerService {
                 .firstName(customer.getFirstName())
                 .build();
     }
+
+    public void deleteCustomer(Long id){
+
+        customerRepository.deleteById(id);
+    }
+
+
 }

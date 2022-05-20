@@ -37,9 +37,16 @@ public class CustomerController {
 
     }
 
-    @GetMapping("/customers/{id}")
+    @GetMapping("/customer/{id}")
   public ResponseEntity<CustomerResponse> getCustomerById(@PathVariable Long id){
         return status(HttpStatus.OK).body(customerService.getCustomerById(id));
+  }
+
+  @DeleteMapping("customer/{id}")
+  public void deleteCustomer(@PathVariable Long id){
+
+        customerService.deleteCustomer(id);
+
   }
 
 
