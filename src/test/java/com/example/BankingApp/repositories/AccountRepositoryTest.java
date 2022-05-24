@@ -19,6 +19,7 @@ class AccountRepositoryTest {
     @Autowired
     private CustomerRepository customerRepository;
 
+
     @Test
     public void createAccount() {
 
@@ -38,9 +39,13 @@ class AccountRepositoryTest {
 
     @Test
     public void printAccounts() {
-        List<Account> accounts = accountRepository.findAll();
+      List<Account> accounts = accountRepository.getAcctByCustomerId(6L);
 
-        System.out.println("Accounts = " + accounts);
+        System.out.println("Accounts: " + accounts);
+
+       /* Account account = accountRepository.findByAccountNumber(999993);
+
+        System.out.println("Account : " + account);*/
     }
 
 

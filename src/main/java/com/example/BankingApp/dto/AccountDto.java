@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AccountDto {
 
-    private String customerName;
+    private String customerFirstName;
     private int accountNumber;
     private String accountType;
 }
