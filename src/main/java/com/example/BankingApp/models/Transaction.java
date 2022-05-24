@@ -29,7 +29,8 @@ public class Transaction {
 
     @ManyToOne(
            cascade =  CascadeType.MERGE,
-            fetch =  FetchType.EAGER
+            fetch =  FetchType.EAGER,
+            optional = false
     )
     @JoinColumn(
             name = "account_id",

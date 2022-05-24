@@ -23,13 +23,13 @@ class TransactionRepositoryTest {
     @Test
     public void doTransaction(){
 
-     Account acct =  accountRepository.findByAccountNumber(99998888);
+     Account acct =  accountRepository.findByAccountNumber(444333).get();
 
-//        Account acct = Account.builder()
-//                .accountBalance(8888)
-//                .accountType("savngs")
-//                .accountNumber(77776666)
-//                .build();
+      /*  Account acct = Account.builder()
+                .accountBalance(8888)
+                .accountType("savngs")
+                .accountNumber(77776666)
+                .build();*/
 
         Transaction transaction = Transaction.builder()
                 .transType("Payment")

@@ -35,5 +35,11 @@ public class AccountController {
         return status(HttpStatus.OK).body(accountService.getAccountByCusId(id));
     }
 
+    @GetMapping("/acctNum/{num}")
+    public ResponseEntity<AccountResponse> getAcctByAcctNum(@PathVariable int num){
+        return status(HttpStatus.OK).body(accountService.getAcctByAcctNum(num));
+    }
+
+
 
 }

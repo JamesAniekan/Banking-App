@@ -1,5 +1,6 @@
 package com.example.BankingApp.services;
 
+import com.example.BankingApp.Exceptions.AccountNotFoundException;
 import com.example.BankingApp.Exceptions.CustomerNotFoundException;
 import com.example.BankingApp.dto.AccountDto;
 import com.example.BankingApp.dto.AccountResponse;
@@ -59,4 +60,17 @@ public class AccountService {
         return accountResponses;
     }
 
+    public AccountResponse getAcctByAcctNum(int acctNum) {
+
+       Account account =  accountRepository.findByAccountNumber(acctNum).orElseThrow(
+               ()-> new AccountNotFoundException("Account not found")
+       );
+
+        return AccountResponse.builder()
+                .acctId(account.getAccountId())
+                .acctBal(account.getAccountBalance())
+                .acctType(account.getAccountType())
+                .acctNum(account.getAccountNumber())
+                .build();
+    }
 }
