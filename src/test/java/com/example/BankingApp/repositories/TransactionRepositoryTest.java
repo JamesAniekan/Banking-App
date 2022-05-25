@@ -41,7 +41,6 @@ class TransactionRepositoryTest {
 
     @Test
    public void printTrans(){
-
         List<Transaction> transaction = transactionRepository.findAll();
         System.out.println("Transactions = " + transaction);
     }

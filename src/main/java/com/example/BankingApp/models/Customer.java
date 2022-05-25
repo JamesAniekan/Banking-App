@@ -26,10 +26,12 @@ public class Customer {
     @Embedded
     private Address address;
 
+
     @OneToMany(
             mappedBy = "accountOwner",
             orphanRemoval = true
     )
     private List<Account> accounts;
+
 
 }

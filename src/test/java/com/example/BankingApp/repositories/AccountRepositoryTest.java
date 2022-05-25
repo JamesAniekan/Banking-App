@@ -39,7 +39,7 @@ class AccountRepositoryTest {
 
     @Test
     public void printAccounts() {
-      List<Account> accounts = accountRepository.getAcctByCustomerId(6L);
+      List<Account> accounts = accountRepository.findAll();
 
         System.out.println("Accounts: " + accounts);
 

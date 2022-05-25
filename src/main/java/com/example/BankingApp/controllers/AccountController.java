@@ -29,17 +29,18 @@ public class AccountController {
     }
 
 
-
+//List of accounts owned by a customer.
     @GetMapping("/myAccounts/{id}")
     public ResponseEntity<List<AccountResponse>> getAcctByCusId(@PathVariable Long id){
         return status(HttpStatus.OK).body(accountService.getAccountByCusId(id));
     }
-
+//Account details by account number.
     @GetMapping("/acctNum/{num}")
     public ResponseEntity<AccountResponse> getAcctByAcctNum(@PathVariable int num){
         return status(HttpStatus.OK).body(accountService.getAcctByAcctNum(num));
     }
 
+    //Customer who owns a particular account.
 
 
 }

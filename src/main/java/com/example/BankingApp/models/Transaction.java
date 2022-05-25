@@ -1,9 +1,6 @@
 package com.example.BankingApp.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -15,6 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(exclude = "transAccount")
 public class Transaction {
 
     @Id
@@ -29,7 +27,7 @@ public class Transaction {
 
     @ManyToOne(
            cascade =  CascadeType.MERGE,
-            fetch =  FetchType.EAGER,
+            fetch =  FetchType.LAZY,
             optional = false
     )
     @JoinColumn(
