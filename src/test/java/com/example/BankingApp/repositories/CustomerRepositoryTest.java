@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
@@ -21,18 +22,18 @@ class CustomerRepositoryTest {
     public void createCustomer(){
 
         Address address = Address.builder()
-                .address("30 Lafarge Boulevard")
-                .state("Bloombell")
+                .address("23 Street")
+                .state("Ackley")
                 .country("United Lands")
                 .build();
 
 
 
         Customer customer = Customer.builder()
-                .firstName("Rowland")
-                .lastName("Dave")
-                .phoneNumber(1115430)
-                .email("rowdave@ymail.com")
+                .firstName("Ben")
+                .lastName("Son")
+                .phoneNumber(3335430)
+                .email("benson@ymail.com")
                 .address(address)
                 .build();
 
@@ -41,12 +42,12 @@ class CustomerRepositoryTest {
 
     @Test
     public void delCus(){
-        customerRepository.deleteById(2L);
+        customerRepository.deleteById(3L);
     }
 
     @Test
     public void printCustomers(){
-        List<Customer> customers = customerRepository.findAll();
+        Customer customers = customerRepository.findById(2L).get();
 
         System.out.println("Customers = " + customers);
     }

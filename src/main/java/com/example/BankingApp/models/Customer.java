@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(exclude = "accounts")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

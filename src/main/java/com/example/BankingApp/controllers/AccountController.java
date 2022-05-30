@@ -30,6 +30,7 @@ public class AccountController {
 
 
 //List of accounts owned by a customer.
+
     @GetMapping("/myAccounts/{id}")
     public ResponseEntity<List<AccountResponse>> getAcctByCusId(@PathVariable Long id){
         return status(HttpStatus.OK).body(accountService.getAccountByCusId(id));

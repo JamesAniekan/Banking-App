@@ -18,4 +18,10 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
             value = "SELECT * FROM account a where a.customer_id = ?1",
             nativeQuery = true)
     List<Account> getAcctByCustomerId(Long cusId);
+
+    @Query(
+            value = "SELECT customer_id FROM account a where a.account_number = ?1",
+            nativeQuery = true
+    )
+    Long getCustomerIdFromAcctNum(int acctNum);
 }

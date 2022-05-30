@@ -31,7 +31,6 @@ public class Account {
     private Instant creationDate;
 
     @ManyToOne(
-            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             optional = false
     )

@@ -37,10 +37,11 @@ public class CustomerController {
 
     }
 
-    @GetMapping("/customer/{id}")
-  public ResponseEntity<CustomerResponse> getCustomerById(@PathVariable Long id){
-        return status(HttpStatus.OK).body(customerService.getCustomerById(id));
-  }
+    @GetMapping("/getCustomer/{id}")
+    public CustomerResponse getCustomerById(@PathVariable Long id){
+        return customerService.getCustomerById(id);
+    }
+
 
   @DeleteMapping("customer/{id}")
   public void deleteCustomer(@PathVariable Long id){
@@ -49,6 +50,11 @@ public class CustomerController {
 
   }
 
+  @GetMapping("/customer/{acctNum}")
+  public ResponseEntity<CustomerResponse> getCustomerByAcctNum(@PathVariable int acctNum){
+        return status(HttpStatus.OK).body(customerService.getCusByAcctNum(acctNum));
+
+  }
 
 
 }
