@@ -12,6 +12,7 @@ import com.example.BankingApp.models.Customer;
 import com.example.BankingApp.repositories.AccountRepository;
 import com.example.BankingApp.repositories.CustomerRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,7 @@ public class CustomerService {
 
     CustomerRepository customerRepository;
     AccountRepository accountRepository;
+    PasswordEncoder passwordEncoder;
 
     public void registerCustomer(RegisterRequest registerRequest){
 
@@ -37,6 +39,8 @@ public class CustomerService {
         Customer customer = Customer.builder()
                 .firstName(registerRequest.getFirstName())
                 .lastName(registerRequest.getLastName())
+                .username(registerRequest.getUsername())
+                .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .email(registerRequest.getEmail())
                 .phoneNumber(registerRequest.getPhoneNumber())
                 .address(address)
