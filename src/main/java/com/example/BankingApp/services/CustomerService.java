@@ -5,6 +5,7 @@ import com.example.BankingApp.Exceptions.AccountNotFoundException;
 import com.example.BankingApp.Exceptions.CustomerNotFoundException;
 import com.example.BankingApp.dto.AccountResponse;
 import com.example.BankingApp.dto.CustomerResponse;
+import com.example.BankingApp.dto.LoginRequest;
 import com.example.BankingApp.dto.RegisterRequest;
 import com.example.BankingApp.models.Account;
 import com.example.BankingApp.models.Address;
@@ -12,6 +13,10 @@ import com.example.BankingApp.models.Customer;
 import com.example.BankingApp.repositories.AccountRepository;
 import com.example.BankingApp.repositories.CustomerRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +32,7 @@ public class CustomerService {
     CustomerRepository customerRepository;
     AccountRepository accountRepository;
     PasswordEncoder passwordEncoder;
+    AuthenticationManager authenticationManager;
 
     public void registerCustomer(RegisterRequest registerRequest){
 
@@ -109,5 +115,15 @@ public class CustomerService {
                .email(customer.getEmail())
                .phoneNumber(customer.getPhoneNumber())
                .build();
+    }
+
+    public void login(LoginRequest loginRequest){
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        loginRequest.getUsername(),
+                        loginRequest.getPassword()
+                ));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }

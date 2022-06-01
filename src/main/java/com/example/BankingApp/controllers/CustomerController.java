@@ -1,6 +1,7 @@
 package com.example.BankingApp.controllers;
 
 import com.example.BankingApp.dto.CustomerResponse;
+import com.example.BankingApp.dto.LoginRequest;
 import com.example.BankingApp.dto.RegisterRequest;
 import com.example.BankingApp.models.Customer;
 import com.example.BankingApp.services.CustomerService;
@@ -24,8 +25,13 @@ public class CustomerController {
     @PostMapping("/register")
     public ResponseEntity<String> registerCustomer(@RequestBody RegisterRequest registerRequest){
             customerService.registerCustomer(registerRequest);
-
             return new ResponseEntity<>("Customer registration successful", HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> loginCustomer(@RequestBody LoginRequest loginRequest){
+        customerService.login(loginRequest);
+        return new ResponseEntity<>("Login successful", HttpStatus.OK);
     }
 
 
