@@ -5,13 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class AccountResponse {
-    private Long acctId;
-    private int acctNum;
-    private String acctType;
-    private double acctBal;
+    private Long accountId;
+    private int accountNumber;
+    private String accountType;
+    private double accountBalance;
+    private Instant creationDate;
 }

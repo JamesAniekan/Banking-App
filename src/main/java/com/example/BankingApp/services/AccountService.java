@@ -4,6 +4,7 @@ import com.example.BankingApp.Exceptions.AccountNotFoundException;
 import com.example.BankingApp.Exceptions.CustomerNotFoundException;
 import com.example.BankingApp.dto.AccountDto;
 import com.example.BankingApp.dto.AccountResponse;
+import com.example.BankingApp.mappings.AccountMapper;
 import com.example.BankingApp.models.Account;
 import com.example.BankingApp.models.Customer;
 import com.example.BankingApp.repositories.AccountRepository;
@@ -19,9 +20,8 @@ import java.util.List;
 public class AccountService {
 
     AccountRepository accountRepository;
-
     CustomerRepository customerRepository;
-
+    AccountMapper accountMapper;
 
 
     public void createAccount(AccountDto accountDto){
@@ -49,10 +49,11 @@ public class AccountService {
 
         for (Account account: accounts) {
            AccountResponse accountResponse = AccountResponse.builder()
-                    .acctId(account.getAccountId())
-                    .acctNum(account.getAccountNumber())
-                    .acctType(account.getAccountType())
-                    .acctBal(account.getAccountBalance())
+                    .accountId(account.getAccountId())
+                    .accountNumber(account.getAccountNumber())
+                    .accountType(account.getAccountType())
+                    .accountBalance(account.getAccountBalance())
+                   .creationDate(account.getCreationDate())
                     .build();
 
             accountResponses.add(accountResponse);
@@ -66,11 +67,6 @@ public class AccountService {
                ()-> new AccountNotFoundException("Account not found")
        );
 
-        return AccountResponse.builder()
-                .acctId(account.getAccountId())
-                .acctBal(account.getAccountBalance())
-                .acctType(account.getAccountType())
-                .acctNum(account.getAccountNumber())
-                .build();
+        return accountMapper.accountToAccountResponse(account);
     }
 }
