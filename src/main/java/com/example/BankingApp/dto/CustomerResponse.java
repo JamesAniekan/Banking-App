@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 public class CustomerResponse {
 
-    private Long id;
+    private Long customerId;
     private String firstName;
     private String lastName;
     private String email;

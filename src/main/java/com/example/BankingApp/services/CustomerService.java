@@ -7,6 +7,7 @@ import com.example.BankingApp.dto.AccountResponse;
 import com.example.BankingApp.dto.CustomerResponse;
 import com.example.BankingApp.dto.LoginRequest;
 import com.example.BankingApp.dto.RegisterRequest;
+import com.example.BankingApp.mappings.CustomerMapper;
 import com.example.BankingApp.models.Account;
 import com.example.BankingApp.models.Address;
 import com.example.BankingApp.models.Customer;
@@ -33,6 +34,7 @@ public class CustomerService {
     AccountRepository accountRepository;
     PasswordEncoder passwordEncoder;
     AuthenticationManager authenticationManager;
+    CustomerMapper customerMapper;
 
     public void registerCustomer(RegisterRequest registerRequest){
 
@@ -64,13 +66,8 @@ public class CustomerService {
        List<CustomerResponse> customerResponses = new ArrayList<>();
 
         for (Customer customer : customers) {
-             CustomerResponse customerResponse =  CustomerResponse.builder()
-                                                        .id(customer.getCustomerId())
-                                                        .firstName(customer.getFirstName())
-                                                        .lastName(customer.getLastName())
-                                                        .email(customer.getEmail())
-                                                        .phoneNumber(customer.getPhoneNumber())
-                                                        .build();
+
+             CustomerResponse customerResponse =  customerMapper.cusToCusResponse(customer);
 
             customerResponses.add(customerResponse);
         }
@@ -83,14 +80,7 @@ public class CustomerService {
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(()-> new CustomerNotFoundException("Customer with id " + id + " not found"));
 
-
-        return CustomerResponse.builder()
-                .id(customer.getCustomerId())
-                .phoneNumber(customer.getPhoneNumber())
-                .email(customer.getEmail())
-                .lastName(customer.getLastName())
-                .firstName(customer.getFirstName())
-                .build();
+        return customerMapper.cusToCusResponse(customer);
     }
 
     public void deleteCustomer(Long id){
@@ -108,13 +98,7 @@ public class CustomerService {
                        () -> new CustomerNotFoundException("Customer not found")
                );
 
-       return CustomerResponse.builder()
-               .id(customer.getCustomerId())
-               .firstName(customer.getFirstName())
-               .lastName(customer.getLastName())
-               .email(customer.getEmail())
-               .phoneNumber(customer.getPhoneNumber())
-               .build();
+       return customerMapper.cusToCusResponse(customer);
     }
 
     public void login(LoginRequest loginRequest){
@@ -125,5 +109,6 @@ public class CustomerService {
                 ));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
     }
 }

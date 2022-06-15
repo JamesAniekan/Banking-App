@@ -3,6 +3,7 @@ package com.example.BankingApp.services;
 import com.example.BankingApp.Exceptions.AccountNotFoundException;
 import com.example.BankingApp.dto.TransactionDto;
 import com.example.BankingApp.dto.TransactionResponse;
+import com.example.BankingApp.mappings.TransactionMapper;
 import com.example.BankingApp.models.Account;
 import com.example.BankingApp.models.Transaction;
 import com.example.BankingApp.repositories.AccountRepository;
@@ -19,6 +20,7 @@ public class TransactionService {
 
     AccountRepository accountRepository;
     TransactionRepository transactionRepository;
+    TransactionMapper transactionMapper;
 
     public void doTransaction(TransactionDto transactionDto) {
 
@@ -27,7 +29,6 @@ public class TransactionService {
         );
 
       transactionRepository.save(
-
               Transaction.builder()
                 .transAccount(account)
                 .transType(transactionDto.getTransType())
@@ -48,14 +49,10 @@ public class TransactionService {
         List<TransactionResponse> transactionResponses =  new ArrayList<>();
 
         for (Transaction transaction: transactions) {
-           TransactionResponse transactionResponse = TransactionResponse.builder()
-                    .amount(transaction.getAmount())
-                    .transType(transaction.getTransType())
-                    .id(transaction.getId())
-                   .transDate(transaction.getTransDate())
-                    .build();
+           TransactionResponse transactionResponse = transactionMapper.transToTransResponse(transaction);
            transactionResponses.add(transactionResponse);
         }
         return transactionResponses;
     }
+
 }

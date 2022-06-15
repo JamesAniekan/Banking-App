@@ -48,15 +48,10 @@ public class AccountService {
         List<Account> accounts = accountRepository.getAcctByCustomerId(cusId);
 
         for (Account account: accounts) {
-           AccountResponse accountResponse = AccountResponse.builder()
-                    .accountId(account.getAccountId())
-                    .accountNumber(account.getAccountNumber())
-                    .accountType(account.getAccountType())
-                    .accountBalance(account.getAccountBalance())
-                   .creationDate(account.getCreationDate())
-                    .build();
+            //mapstruct mapping
+           AccountResponse accountResponse = accountMapper.accountToAccountResponse(account);
 
-            accountResponses.add(accountResponse);
+           accountResponses.add(accountResponse);
         }
         return accountResponses;
     }
@@ -69,4 +64,5 @@ public class AccountService {
 
         return accountMapper.accountToAccountResponse(account);
     }
+    
 }
