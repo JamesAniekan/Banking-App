@@ -3,7 +3,6 @@ package com.example.BankingApp.controllers;
 import com.example.BankingApp.dto.CustomerResponse;
 import com.example.BankingApp.dto.LoginRequest;
 import com.example.BankingApp.dto.RegisterRequest;
-import com.example.BankingApp.models.Customer;
 import com.example.BankingApp.services.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,7 @@ import static org.springframework.http.ResponseEntity.status;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api")
-public class CustomerController {
+public class CustomerController{
 
   private final CustomerService customerService;
 
@@ -38,29 +37,24 @@ public class CustomerController {
 //Endpoint to get all customers.
     @GetMapping("/customers")
     public ResponseEntity<List<CustomerResponse>> getAllCustomers(){
-
         return status(HttpStatus.OK).body(customerService.getAllCustomers());
-
     }
 
     @GetMapping("/getCustomer/{id}")
-    public CustomerResponse getCustomerById(@PathVariable Long id){
+    public CustomerResponse getCustomerById(@PathVariable Long id) {
         return customerService.getCustomerById(id);
     }
 
 
   @DeleteMapping("customer/{id}")
   public void deleteCustomer(@PathVariable Long id){
-
         customerService.deleteCustomer(id);
-
-  }
+    }
 
   @GetMapping("/customer/{acctNum}")
   public ResponseEntity<CustomerResponse> getCustomerByAcctNum(@PathVariable int acctNum){
         return status(HttpStatus.OK).body(customerService.getCusByAcctNum(acctNum));
-
-  }
+    }
 
 
 }

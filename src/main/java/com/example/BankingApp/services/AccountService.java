@@ -24,13 +24,11 @@ public class AccountService {
     AccountMapper accountMapper;
 
 
-    public void createAccount(AccountDto accountDto){
+    public void createAccount(AccountDto accountDto) {
 
         Customer customer = customerRepository.findByFirstName(accountDto.getCustomerFirstName()).orElseThrow(
                 () -> new CustomerNotFoundException("Customer not found")
         );
-
-
 
         Account account = Account.builder()
                 .accountNumber(accountDto.getAccountNumber())
@@ -41,28 +39,26 @@ public class AccountService {
         accountRepository.save(account);
     }
 
-    public List<AccountResponse> getAccountByCusId(Long cusId){
+    public List<AccountResponse> getAccountByCusId(Long cusId) {
 
         List<AccountResponse> accountResponses = new ArrayList<>();
 
         List<Account> accounts = accountRepository.getAcctByCustomerId(cusId);
 
-        for (Account account: accounts) {
-            //mapstruct mapping
-           AccountResponse accountResponse = accountMapper.accountToAccountResponse(account);
+        for (Account account : accounts) {
+            AccountResponse accountResponse = accountMapper.accountToAccountResponse(account);
 
-           accountResponses.add(accountResponse);
+            accountResponses.add(accountResponse);
         }
         return accountResponses;
     }
 
     public AccountResponse getAcctByAcctNum(int acctNum) {
-
-       Account account =  accountRepository.findByAccountNumber(acctNum).orElseThrow(
-               ()-> new AccountNotFoundException("Account not found")
-       );
+        Account account = accountRepository.findByAccountNumber(acctNum).orElseThrow(
+                () -> new AccountNotFoundException("Account not found")
+        );
 
         return accountMapper.accountToAccountResponse(account);
     }
-    
+
 }

@@ -32,7 +32,7 @@ class CustomerRepositoryTest {
         Customer customer = Customer.builder()
                 .firstName("Ben")
                 .lastName("Son")
-                .phoneNumber(3335430)
+                .phoneNumber("3335430")
                 .email("benson@ymail.com")
                 .address(address)
                 .build();
@@ -47,7 +47,7 @@ class CustomerRepositoryTest {
 
     @Test
     public void printCustomers(){
-        Customer customers = customerRepository.findById(2L).get();
+        List<Customer> customers = customerRepository.findAll();
 
         System.out.println("Customers = " + customers);
     }

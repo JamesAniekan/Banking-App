@@ -20,11 +20,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -35,6 +36,8 @@ public class CustomerService {
     PasswordEncoder passwordEncoder;
     AuthenticationManager authenticationManager;
     CustomerMapper customerMapper;
+
+    private final Logger LOG = LoggerFactory.getLogger(CustomerService.class);
 
     public void registerCustomer(RegisterRequest registerRequest){
 
@@ -67,10 +70,19 @@ public class CustomerService {
 
         for (Customer customer : customers) {
 
-             CustomerResponse customerResponse =  customerMapper.cusToCusResponse(customer);
+//             CustomerResponse customerResponse =  customerMapper.cusToCusResponse(customer);
+            CustomerResponse customerResponse =  CustomerResponse.builder()
+                    .customerId(customer.getCustomerId())
+                    .firstName(customer.getFirstName())
+                    .lastName(customer.getLastName())
+                    .email(customer.getEmail())
+                    .phoneNumber(customer.getPhoneNumber())
+                    .build();
 
-            customerResponses.add(customerResponse);
+           customerResponses.add(customerResponse);
+
         }
+        LOG.info("CUSTOMER-RESPONSES " + customerResponses);
     return customerResponses;
 
     }
@@ -111,4 +123,6 @@ public class CustomerService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
     }
+
 }
+

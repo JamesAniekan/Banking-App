@@ -2,6 +2,7 @@ package com.example.BankingApp.models;
 
 
 import lombok.*;
+import org.aspectj.bridge.IMessage;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -26,18 +27,19 @@ public class Customer {
 
     @NotBlank(message = "Password required")
     private String password;
-
+    @NotBlank(message = "Field required")
     private String firstName;
+    @NotBlank(message = "field required")
     private String lastName;
 
     @NotEmpty(message = "Email required")
     private String email;
 
-    private int phoneNumber;
+    @NotEmpty(message = "Phone number required")
+    private String phoneNumber;
 
     @Embedded
     private Address address;
-
 
     @OneToMany(
             mappedBy = "accountOwner",

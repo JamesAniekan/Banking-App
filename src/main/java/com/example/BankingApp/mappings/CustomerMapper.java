@@ -7,7 +7,5 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface CustomerMapper {
-
-    @Mapping(target = "customerId", source = "customer.customerId")
     CustomerResponse cusToCusResponse(Customer customer);
 }
