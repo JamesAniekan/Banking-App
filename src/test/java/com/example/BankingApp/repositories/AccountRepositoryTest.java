@@ -2,12 +2,14 @@ package com.example.BankingApp.repositories;
 
 import com.example.BankingApp.models.Account;
 import com.example.BankingApp.models.Customer;
+import com.example.BankingApp.models.Transaction;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
@@ -23,7 +25,7 @@ class AccountRepositoryTest {
     @Test
     public void createAccount() {
 
-        Customer customer = customerRepository.findByFirstName("Branson").get();
+        Customer customer = customerRepository.findByFirstName("Dan").get();
 
 
         Account account = Account.builder()
@@ -39,9 +41,9 @@ class AccountRepositoryTest {
 
     @Test
     public void printAccounts() {
-      List<Account> accounts = accountRepository.findAll();
+      List<Transaction> account = accountRepository.findById(2L).get().getTransactionHx();
 
-        System.out.println("Accounts: " + accounts);
+        System.out.println("Accounts: " + account);
 
        /* Account account = accountRepository.findByAccountNumber(999993);
 
@@ -51,13 +53,13 @@ class AccountRepositoryTest {
 
     @Test
     public void printCus() {
-        Customer customer = customerRepository.findByFirstName("Rowland").get();
+        Customer customer = customerRepository.findByFirstName("Dan").get();
         System.out.println(customer);
     }
 
     @Test
     public void printCusId(){
-       Long customerId = accountRepository.getCustomerIdFromAcctNum(444333);
+       Optional<Long> customerId = accountRepository.getCustomerIdFromAcctNum(444333);
         System.out.println("Customer ID: " + customerId);
     }
 }

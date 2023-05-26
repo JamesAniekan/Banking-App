@@ -1,7 +1,6 @@
 package com.example.BankingApp.repositories;
 
 
-import com.example.BankingApp.models.Account;
 import com.example.BankingApp.models.Address;
 import com.example.BankingApp.models.Customer;
 import org.junit.jupiter.api.Test;
@@ -9,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class CustomerRepositoryTest {
 
@@ -32,6 +29,8 @@ class CustomerRepositoryTest {
         Customer customer = Customer.builder()
                 .firstName("Ben")
                 .lastName("Son")
+                .username("Yoo")
+                .password("1234")
                 .phoneNumber("3335430")
                 .email("benson@ymail.com")
                 .address(address)

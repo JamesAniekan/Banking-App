@@ -1,6 +1,7 @@
 package com.example.BankingApp.repositories;
 
 import com.example.BankingApp.models.Account;
+import com.example.BankingApp.models.Customer;
 import com.example.BankingApp.models.Transaction;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,29 +21,36 @@ class TransactionRepositoryTest {
     @Autowired
     AccountRepository accountRepository;
 
+    @Autowired
+    CustomerRepository customerRepository;
+
     @Test
     public void doTransaction(){
 
-     Account acct =  accountRepository.findByAccountNumber(444333).get();
+     //Account acct =  accountRepository.findByAccountNumber(444333).get();
+        Optional<Customer> customer = customerRepository.findById(1L);
 
-      /*  Account acct = Account.builder()
-                .accountBalance(8888)
-                .accountType("savngs")
-                .accountNumber(77776666)
-                .build();*/
+        Optional<Account> acct1 = accountRepository.findById(2L);
+//                .accountBalance(8888)
+//                .accountType("savngs")
+//                .accountNumber(77776666)
+//                .accountOwner(customer)
+//                .build();
 
         Transaction transaction = Transaction.builder()
-                .transType("Payment")
-                .amount(67000)
-                .transAccount(acct)
+                .transType("Withdrawal")
+                .amount(34400)
+                .transAccount(acct1.get())
                 .build();
-        transactionRepository.save(transaction);
+            transactionRepository.save(transaction);
+
     }
 
     @Test
    public void printTrans(){
-        List<Transaction> transaction = transactionRepository.findAll();
-        System.out.println("Transactions = " + transaction);
+        //List<Transaction> transaction
+        Transaction trans = transactionRepository.findAll().get(5);
+        System.out.println("Transactions = " + trans);
     }
 
 }

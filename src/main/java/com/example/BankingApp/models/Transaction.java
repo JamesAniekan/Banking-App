@@ -26,7 +26,6 @@ public class Transaction {
     private double amount;
 
     @ManyToOne(
-           cascade =  CascadeType.MERGE,
             fetch =  FetchType.LAZY,
             optional = false
     )

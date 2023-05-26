@@ -22,8 +22,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsService userDetailsService;
 
-    @Autowired
-
 
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
     @Override
@@ -55,4 +53,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated();
     }
+
 }

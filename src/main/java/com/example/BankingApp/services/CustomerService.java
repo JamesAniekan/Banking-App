@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -101,9 +102,11 @@ public class CustomerService {
     }
 
 
-    public CustomerResponse getCusByAcctNum(int acctNum) {
+    public CustomerResponse getCusByAcctNum(int acctNum)  {
 
-       Long cusId = accountRepository.getCustomerIdFromAcctNum(acctNum);
+       Long cusId = accountRepository.getCustomerIdFromAcctNum(acctNum).orElseThrow(
+               () -> new CustomerNotFoundException("Customer not found")
+       );
 
        Customer customer = customerRepository.findById(cusId)
                .orElseThrow(

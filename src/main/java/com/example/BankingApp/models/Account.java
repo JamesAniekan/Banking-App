@@ -7,9 +7,8 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
+
 
 @Entity
 @Data
@@ -42,7 +41,7 @@ public class Account {
 
 
     @OneToMany(
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "transAccount",
             orphanRemoval = true
