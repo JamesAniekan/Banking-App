@@ -17,7 +17,7 @@ pipeline{
         }
         stage('Run'){
             steps{
-                java -jar Banking-App-0.0.1-SNAPSHOT.jar
+               sh 'java -jar Banking-App-0.0.1-SNAPSHOT.jar'
             }
         }
 
