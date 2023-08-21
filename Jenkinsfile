@@ -17,7 +17,7 @@ pipeline{
         }
         stage('Run'){
             steps{
-               sh '/var/lib/jenkins/workspace/banking_app_pipeline/target/Banking-App-0.0.1-SNAPSHOT.jar'
+               sh 'java -jar /var/lib/jenkins/workspace/banking_app_pipeline/target/Banking-App-0.0.1-SNAPSHOT.jar'
             }
         }
 
