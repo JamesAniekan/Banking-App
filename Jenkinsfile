@@ -15,7 +15,7 @@ pipeline{
         }
         stage('Deploy'){
             steps{
-                dir("~"){
+                dir("/home/ubuntu"){
                     sh 'pwd'
                 }
 
