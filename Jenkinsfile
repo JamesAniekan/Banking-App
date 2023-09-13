@@ -15,7 +15,7 @@ pipeline{
         }
         stage('Deploy'){
             steps{
-                sh "scp -i ${root/ppKey.pem} /var/lib/jenkins/workspace/bankingAppPipeline/target/Banking-App-0.0.1-SNAPSHOT.jar ubuntu@13.49.230.55:~/"
+                sh "scp -i ~/ppKey.pem /var/lib/jenkins/workspace/bankingAppPipeline/target/Banking-App-0.0.1-SNAPSHOT.jar ubuntu@13.49.230.55:~/"
 
 //                 def runApp = 'java -jar usr/share/java/Banking-App-0.0.1-SNAPSHOT.jar'
 //                 sshagent(['pp-key']){
