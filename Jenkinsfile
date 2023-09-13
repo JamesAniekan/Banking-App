@@ -3,9 +3,9 @@ pipeline{
     tools{
         maven '3.8.1'
     }
-    environment{
-        JEN_PPKEY = credentials('pp-key')
-    }
+//     environment{
+//         JEN_PPKEY = credentials('pp-key')
+//     }
     stages{
         stage('Package'){
             steps{
@@ -16,7 +16,7 @@ pipeline{
         stage('Deploy'){
             steps{
             script{
-                sh 'scp $JEN_PPKEY /var/lib/jenkins/workspace/bankingAppPipeline/target/Banking-App-0.0.1-SNAPSHOT.jar ubuntu@13.49.230.55:~/'
+                sh 'scp ~/ppKey.pem /var/lib/jenkins/workspace/bankingAppPipeline/target/Banking-App-0.0.1-SNAPSHOT.jar ubuntu@13.49.230.55:~/'
                 def runApp = 'java -jar usr/share/java/Banking-App-0.0.1-SNAPSHOT.jar'
                 sshagent(['pp-key']){
                    scp
