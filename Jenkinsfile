@@ -15,9 +15,9 @@ pipeline{
         }
         stage('Deploy'){
             steps{
-                dir("/home/ubuntu/ppKeyFile"){
-                    sh 'sudo pwd'
-                }
+
+                    sh 'sudo cd /home/ubuntu/ppKeyFile'
+                    sh 'ls'
 
 //                sh 'scp -i  ~/ppKey.pem /var/lib/jenkins/workspace/bankingAppPipeline/target/Banking-App-0.0.1-SNAPSHOT.jar ubuntu@13.49.230.55:~/'
 
