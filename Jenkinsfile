@@ -15,7 +15,7 @@ pipeline{
         }
         stage('Deploy'){
             steps{
-                dir("/home/ubuntu"){
+                dir("/home/ubuntu/ppKeyFile"){
                     sh 'sudo pwd'
                 }
 
