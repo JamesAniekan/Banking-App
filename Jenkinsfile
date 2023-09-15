@@ -16,7 +16,7 @@ pipeline{
         stage('Deploy'){
         steps{
             script{
-                sh 'scp -i /var/lib/jenkins/workspace/ppKey.pem  /var/lib/jenkins/workspace/bankingAppPipeline/target/Banking-App-0.0.1-SNAPSHOT.jar ubuntu@16.171.38.70:~/'
+                sh 'scp -o StrictHostKeyChecking=no -i /var/lib/jenkins/workspace/ppKey.pem  /var/lib/jenkins/workspace/bankingAppPipeline/target/Banking-App-0.0.1-SNAPSHOT.jar ubuntu@16.171.38.70:~/'
                 def runApp = 'java -jar ~/Banking-App-0.0.1-SNAPSHOT.jar'
                 sshagent(['pp-key']){
                    sh "ssh -o StrictHostKeyChecking=no ubuntu@16.171.38.70 ${runApp}"
